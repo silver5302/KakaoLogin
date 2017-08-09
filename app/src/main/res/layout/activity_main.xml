@@ -63,7 +63,7 @@
                 android:layout_weight="1"
                 android:background="@color/bg_login_button_highlighted"
                 android:onClick="clickGeneral"
-                android:text="용병 및 팀원 모집/신청"
+                android:text="용병 게시판"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 

@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     CircleImageView user_img;
     LinearLayout success_layout;
     Fragment fragment;
+    UserProfile profile;
+
 
     FragmentManager fragmentManager;
     LoginButton loginButton;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ActionBarDrawerToggle drawerToggle;
     Toolbar toolbar;
     NavigationView navi;
+
 
     AQuery aQuery;
 
@@ -102,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         user_nickname =(TextView)headerView.findViewById(R.id.tv_header_name);
         user_img =(CircleImageView) headerView.findViewById(R.id.img_header);
         user_email =(TextView)headerView.findViewById(R.id.tv_header_mail);
+
 
 
 
@@ -209,6 +213,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onSuccess(UserProfile userProfile) {
+                profile = userProfile;
+
+
+
                 Log.e("onSuccess",userProfile.toString());
 
                user_nickname.setText(userProfile.getNickname());
@@ -234,12 +242,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         fragment=new MakeTeamFragment();
+        Bundle bundle=new Bundle();
+        bundle.putString("nickname",profile.getNickname());
+        fragment.setArguments(bundle);
         fragmentTransaction.add(R.id.success_layout,fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
     }
     public void clickFindTeam(View v){
+
+        FragmentTransaction tran=fragmentManager.beginTransaction();
+        fragment=new SearchTeamFragment();
+        tran.add(R.id.success_layout,fragment);
+        tran.addToBackStack(null);
+        tran.commit();
+
 
     }
     public void clickMatchingTeam(View v){

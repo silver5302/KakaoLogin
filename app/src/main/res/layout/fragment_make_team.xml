@@ -10,6 +10,7 @@
         android:padding="16dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgview"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
@@ -47,6 +48,7 @@
                 android:textStyle="bold" />
 
             <RadioGroup
+                android:id="@+id/radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -137,11 +139,13 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/btn_Ok"
                 android:text="확인" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/btn_Cancel"
                 android:text="취소" />
         </LinearLayout>
     </LinearLayout>
