@@ -1,5 +1,7 @@
 package com.silver5302.kakaologin;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -28,11 +30,12 @@ import java.util.ArrayList;
 public class SearchTeamFragment extends Fragment {
 
     String loadUrl = "http://silver5302.dothome.co.kr/Team/loadDB.php";
-
     SearchView searchView;
     RecyclerView recycler;
     ArrayList<TeamList> teamLists=new ArrayList<>();
+    ArrayList<TeamList> originalTeamLists = new ArrayList<>();
     RecyclerAdapter adapter;
+    LoadThread loadThread;
 
     @Nullable
     @Override
@@ -40,14 +43,54 @@ public class SearchTeamFragment extends Fragment {
 
         View view=inflater.inflate(R.layout.fragment_search_team,container,false);
 
-//        searchView=(SearchView)view.findViewById(R.id.searchview);
+        searchView=(SearchView)view.findViewById(R.id.searchview);
+        searchView.setQueryHint("팀명을 입력하시오.");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(final String newText) {
+                teamLists.clear();
+
+                if(newText.equals("")){
+                    for(int i=0; i<originalTeamLists.size(); i++){
+                        teamLists.add(originalTeamLists.get(i));
+                    }
+                    adapter.notifyDataSetChanged();
+
+                }else {
+
+                    for(int i=0; i<originalTeamLists.size(); i++){
+                        if(originalTeamLists.get(i).name.contains(newText)){
+                            teamLists.add(originalTeamLists.get(i));
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+
+                }
+
+                return true;
+            }
+        });
+
         recycler=(RecyclerView)view.findViewById(R.id.recycler);
 
         adapter=new RecyclerAdapter(teamLists,getContext());
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new GridLayoutManager(getContext(),2));
-        new Thread(){
-            @Override
+
+        loadThread=new LoadThread();
+        loadThread.start();
+
+
+        return view;
+    }
+
+    class LoadThread extends Thread{
+
             public void run() {
                 super.run();
                 try {
@@ -71,8 +114,18 @@ public class SearchTeamFragment extends Fragment {
                     for (int i=0;i<str.length;i++){
                         String[] unitstr=str[i].split("&");
 
-                        teamLists.add(new TeamList(unitstr[0],unitstr[1],
-                                unitstr[2],unitstr[3],unitstr[4],unitstr[5]));
+                        if(unitstr.length==6){
+                            teamLists.add(new TeamList(unitstr[0],unitstr[1],
+                                    unitstr[2],unitstr[3],unitstr[4],unitstr[5],null));
+                        }else if(unitstr.length==7){
+                            teamLists.add(new TeamList(unitstr[0],unitstr[1],
+                                    unitstr[2],unitstr[3],unitstr[4],unitstr[5],unitstr[6]));
+                        }
+
+                    }
+
+                    for(int i=0; i<teamLists.size(); i++){
+                        originalTeamLists.add(teamLists.get(i));
                     }
 
 
@@ -91,8 +144,7 @@ public class SearchTeamFragment extends Fragment {
                 }
 
             }
-        }.start();
 
-        return view;
     }
+
 }

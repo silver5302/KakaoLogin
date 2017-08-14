@@ -1,20 +1,124 @@
 package com.silver5302.kakaologin;
 
 import android.content.Intent;
+import android.support.annotation.IdRes;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.error.VolleyError;
+import com.android.volley.request.SimpleMultiPartRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RegistActivity extends AppCompatActivity {
 
+    CircleImageView imageView;
+    TextView tv_teamName,tv_teamInform,tv_teamType;
+    EditText edit_name,edit_phone;
+    Toolbar toolbar;
+    RadioGroup radiogroup;
+    String teamName;
+    Button btn_ok,btn_cancel;
+    RadioButton rb;
+    String name,age,phone;
+
+
+    String memberinsertUrl="http://silver5302.dothome.co.kr/Team/insertDB.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regist);
 
-        Intent intent=getIntent();
-        String name=intent.getStringExtra("name");
+        toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              finish();
+            }
+        });
 
-        Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+        imageView=(CircleImageView)findViewById(R.id.imgview);
+        tv_teamName=(TextView)findViewById(R.id.tv_teamname);
+        tv_teamType=(TextView)findViewById(R.id.tv_type);
+        tv_teamInform=(TextView)findViewById(R.id.tv_inform);
+
+        edit_name=(EditText)findViewById(R.id.edit_Name);
+        edit_phone=(EditText)findViewById(R.id.edit_phone);
+        radiogroup=(RadioGroup)findViewById(R.id.radio_group);
+
+
+        Intent intent=getIntent();
+        teamName=intent.getStringExtra("name");
+        String teamInform=intent.getStringExtra("inform");
+        String teamImg=intent.getStringExtra("img");
+        String realTeamImg="http://silver5302.dothome.co.kr/Team/"+teamImg;
+        String teamType=intent.getStringExtra("type");
+
+
+        tv_teamType.setText(teamType);
+        tv_teamName.setText(teamName);
+        tv_teamInform.setText(teamInform);
+        if(teamImg!=null) Glide.with(this).load(realTeamImg).into(imageView);
+
+
     }
+
+    public void clickOk(View v){
+        RequestQueue requestQueue=Volley.newRequestQueue(RegistActivity.this);
+        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, memberinsertUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("eee",response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(RegistActivity.this, "에러!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        rb=(RadioButton) RegistActivity.this.findViewById(radiogroup.getCheckedRadioButtonId());
+
+        name=edit_name.getText().toString();
+        age=rb.getText().toString();
+        phone=edit_phone.getText().toString();
+
+        smpr.addStringParam("teamName",teamName);
+        smpr.addStringParam("userId",G.userId);
+        smpr.addStringParam("nickname",G.nickName);
+        smpr.addStringParam("name",name);
+        smpr.addStringParam("age",age);
+        smpr.addStringParam("phone",phone);
+
+        requestQueue.add(smpr);
+        finish();
+
+    }
+
+    public void clickCancel(View v){
+        finish();
+    }
+
+
 }

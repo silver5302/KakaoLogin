@@ -214,11 +214,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onSuccess(UserProfile userProfile) {
                 profile = userProfile;
-
-
-
                 Log.e("onSuccess",userProfile.toString());
-
+                G.nickName=userProfile.getNickname();
+                G.userId=userProfile.getId()+"";
                user_nickname.setText(userProfile.getNickname());
                 user_email.setText(userProfile.getEmail());
                 aQuery.id(user_img).image(userProfile.getThumbnailImagePath()); // <- 프로필 작은 이미지 , userProfile.getProfileImagePath() <- 큰 이미지
@@ -242,9 +240,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         fragment=new MakeTeamFragment();
-        Bundle bundle=new Bundle();
-        bundle.putString("nickname",profile.getNickname());
-        fragment.setArguments(bundle);
         fragmentTransaction.add(R.id.success_layout,fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
