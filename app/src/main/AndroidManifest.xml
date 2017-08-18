@@ -29,7 +29,8 @@
             android:value="@string/kakao_app_key" />
 
         <activity android:name=".MainActivity" />
-        <activity android:name=".RegistActivity"></activity>
+        <activity android:name=".RegistActivity" />
+        <activity android:name=".ReadyListActivity"></activity>
     </application>
 
 </manifest>

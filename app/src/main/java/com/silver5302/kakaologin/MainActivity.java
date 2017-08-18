@@ -2,6 +2,8 @@ package com.silver5302.kakaologin;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
@@ -16,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,6 +27,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.error.VolleyError;
+import com.android.volley.request.SimpleMultiPartRequest;
+import com.android.volley.toolbox.Volley;
 import com.androidquery.AQuery;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
@@ -45,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Fragment fragment;
     UserProfile profile;
 
+    SQLiteDatabase db;
+    Cursor cursor2;
 
     FragmentManager fragmentManager;
     LoginButton loginButton;
@@ -65,16 +76,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         callback = new SessionCallback();
         Session.getCurrentSession().addCallback(callback);
 
+
         fragmentManager=getSupportFragmentManager();
         navi=(NavigationView)findViewById(R.id.navi);
         drawerLayout=(DrawerLayout)findViewById(R.id.layout_drawer);
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        drawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name,R.string.app_name);
+        drawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name,R.string.app_name){
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
 
-        ActionBar actionBar = getSupportActionBar();
-
-
+                Menu menu=navi.getMenu();
+                MenuItem menuItem=menu.findItem(R.id.header_menu_regiList);
+                if(G.isCaptain!=null&&G.isCaptain.equals("captain")){
+                    menuItem.setVisible(true);
+                }
+            }
+        };
 
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
@@ -116,7 +135,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             loginButton.setVisibility(View.VISIBLE);
         }
 
+
         navi.setNavigationItemSelectedListener(this);
+
+
     }
 
 
@@ -140,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -151,6 +174,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if(fragment!=null) fragmentTran.remove(fragment);
                 fragmentTran.commit();
             }
+        }else if(id==R.id.header_menu_regiList){
+
+            Intent intent=new Intent(this,ReadyListActivity.class);
+            startActivity(intent);
+
         }
 
 
@@ -220,6 +248,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                user_nickname.setText(userProfile.getNickname());
                 user_email.setText(userProfile.getEmail());
                 aQuery.id(user_img).image(userProfile.getThumbnailImagePath()); // <- 프로필 작은 이미지 , userProfile.getProfileImagePath() <- 큰 이미지
+                makeAndfindMysql();
+
             }
 
             @Override
@@ -235,9 +265,67 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Session.getCurrentSession().removeCallback(callback);
     }
 
+    public void makeAndfindMysql(){
+        db=openOrCreateDatabase("teams.db",Context.MODE_PRIVATE,null);
+        db.execSQL("create table if not exists teams(no integer primary key autoincrement,teamName text,isCaptain integer,isJoin integer)");
+        //주장팀 찾기
+        Cursor cursor=db.rawQuery("select * from teams where isCaptain=1",null);
+        if(cursor!=null&&cursor.getCount()>0){
+            cursor.moveToFirst();
+            String teamName=cursor.getString(cursor.getColumnIndex("teamName"));
 
+            G.isCaptain="captain";
+            G.captainTeam=teamName;
+            Log.e("captain",teamName);
+        }
+
+        //가입신청한팀 찾기
+        cursor2=db.rawQuery("select * from teams where isCaptain=0",null);
+        if(cursor2!=null){
+            while (cursor2.moveToNext()){
+                final String teamName=cursor2.getString(cursor2.getColumnIndex("teamName"));
+                Log.e("teamname",teamName);
+                int isJoin=cursor2.getInt(cursor2.getColumnIndex("isJoin"));
+                if(isJoin==1){
+                    Log.e("가입된팀",teamName);
+                }else if(isJoin==0){
+                    //팀멤버리스트 테이블에 내가 속해있는지 확인하기
+                    RequestQueue requestQue= Volley.newRequestQueue(this);
+                    String serverUrl="http://silver5302.dothome.co.kr/Team/checkDB.php";
+                    SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.e("respo",response);
+                            if(response.equals("1")){ //가입된 상황
+                                db=openOrCreateDatabase("teams.db",Context.MODE_PRIVATE,null);
+                                db.execSQL("update teams set isJoin=1 where teamName=?",new String[]{teamName});
+                            }else{ //미가입 상황
+
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    smpr.addStringParam("userId",G.userId);
+                    smpr.addStringParam("tableName",teamName);
+
+                    requestQue.add(smpr);
+                }
+
+            }
+        }
+        db.close();
+    }
     public void clickMakeTeam(View v){
 
+        if(G.isCaptain!=null&&G.isCaptain.equals("captain")){
+            Toast.makeText(this, "이미 한 팀의 주장입니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         fragment=new MakeTeamFragment();
         fragmentTransaction.add(R.id.success_layout,fragment);

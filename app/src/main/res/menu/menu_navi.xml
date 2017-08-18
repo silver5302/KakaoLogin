@@ -7,8 +7,9 @@
         android:title="로그아웃"
         android:icon="@drawable/logout2"/>
     <item
-        android:id="@+id/header_menu_gallery"
-        android:title="갤러리"
+        android:visible="false"
+        android:id="@+id/header_menu_regiList"
+        android:title="가입신청온애들"
 
         android:icon="@android:drawable/ic_menu_gallery"/>
 

@@ -1,6 +1,8 @@
 package com.silver5302.kakaologin;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.IdRes;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -32,13 +35,13 @@ public class RegistActivity extends AppCompatActivity {
 
     CircleImageView imageView;
     TextView tv_teamName,tv_teamInform,tv_teamType;
-    EditText edit_name,edit_phone;
+    EditText edit_name,edit_introduce;
     Toolbar toolbar;
     RadioGroup radiogroup;
     String teamName;
-    Button btn_ok,btn_cancel;
+    String teamImg;
     RadioButton rb;
-    String name,age,phone;
+    String name,age,introduce;
 
 
     String memberinsertUrl="http://silver5302.dothome.co.kr/Team/insertDB.php";
@@ -64,14 +67,14 @@ public class RegistActivity extends AppCompatActivity {
         tv_teamInform=(TextView)findViewById(R.id.tv_inform);
 
         edit_name=(EditText)findViewById(R.id.edit_Name);
-        edit_phone=(EditText)findViewById(R.id.edit_phone);
+        edit_introduce=(EditText)findViewById(R.id.edit_introduce);
         radiogroup=(RadioGroup)findViewById(R.id.radio_group);
 
 
         Intent intent=getIntent();
         teamName=intent.getStringExtra("name");
         String teamInform=intent.getStringExtra("inform");
-        String teamImg=intent.getStringExtra("img");
+        teamImg=intent.getStringExtra("img");
         String realTeamImg="http://silver5302.dothome.co.kr/Team/"+teamImg;
         String teamType=intent.getStringExtra("type");
 
@@ -85,34 +88,47 @@ public class RegistActivity extends AppCompatActivity {
     }
 
     public void clickOk(View v){
-        RequestQueue requestQueue=Volley.newRequestQueue(RegistActivity.this);
-        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, memberinsertUrl, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.e("eee",response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(RegistActivity.this, "에러!!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         rb=(RadioButton) RegistActivity.this.findViewById(radiogroup.getCheckedRadioButtonId());
 
         name=edit_name.getText().toString();
         age=rb.getText().toString();
-        phone=edit_phone.getText().toString();
+        introduce=edit_introduce.getText().toString();
 
-        smpr.addStringParam("teamName",teamName);
-        smpr.addStringParam("userId",G.userId);
-        smpr.addStringParam("nickname",G.nickName);
-        smpr.addStringParam("name",name);
-        smpr.addStringParam("age",age);
-        smpr.addStringParam("phone",phone);
 
-        requestQueue.add(smpr);
-        finish();
+        if(name.equals("")||introduce.equals("")){
+            Toast.makeText(this, "빈칸을 채워주세요.", Toast.LENGTH_SHORT).show();
+        }else{
+            RequestQueue requestQueue=Volley.newRequestQueue(RegistActivity.this);
+            SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, memberinsertUrl, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Toast.makeText(RegistActivity.this, response, Toast.LENGTH_SHORT).show();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(RegistActivity.this, "에러!!", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            smpr.addStringParam("teamName",teamName);
+            smpr.addStringParam("userId",G.userId);
+            smpr.addStringParam("nickname",G.nickName);
+            smpr.addStringParam("name",name);
+            smpr.addStringParam("age",age);
+            smpr.addStringParam("introduce",introduce);
+            smpr.addStringParam("teamImg",teamImg);
+
+            requestQueue.add(smpr);
+
+            SQLiteDatabase db=openOrCreateDatabase("teams.db", Context.MODE_PRIVATE,null);
+            db.execSQL("insert into teams(teamName,isCaptain,isJoin) values(?,?,?)",new String[]{teamName,"0","0"});
+            db.close();
+
+            finish();
+
+        }
+
 
     }
 

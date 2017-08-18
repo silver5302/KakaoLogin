@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ExifInterface;
@@ -294,7 +295,8 @@ public class MakeTeamFragment extends Fragment {
                         @Override
                         public void onResponse(String response) {
 
-                            Log.e("tttttt",response);
+                            Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
+                            G.isCaptain=response;
 
                             editName.setText("");
                             editInform.setText("");
@@ -330,6 +332,12 @@ public class MakeTeamFragment extends Fragment {
                         }
                     }
                     requestQue.add(smpr);
+
+                    SQLiteDatabase db=getActivity().openOrCreateDatabase("teams.db",Context.MODE_PRIVATE,null);
+                    db.execSQL("insert into teams(teamName,isCaptain,isJoin) values(?,?,?)",new String[]{name,"1","0"});
+
+
+
 
                 }
 

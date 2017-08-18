@@ -8,5 +8,7 @@ public class G {
 
     public static String nickName;
     public static String userId;
+    public static String isCaptain=null;
+    public static String captainTeam=null;
 
 }
