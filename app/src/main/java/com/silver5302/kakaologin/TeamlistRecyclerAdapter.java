@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,7 @@ public class TeamlistRecyclerAdapter extends RecyclerView.Adapter {
 
     Context context;
     ArrayList<ReadyMember> readyMembers;
-    String teamPermissonUrl="http://silver5302.dothome.co.kr/Team/teamPermisson.php";
+    String teamPermissonUrl="http://silver5302.dothome.co.kr/Team/teamPermission.php";
 
     public TeamlistRecyclerAdapter(Context context, ArrayList<ReadyMember> readyMembers) {
         this.context = context;
@@ -91,12 +92,11 @@ public class TeamlistRecyclerAdapter extends RecyclerView.Adapter {
                     dialog.setPositiveButton("수락", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(context, "수락", Toast.LENGTH_SHORT).show();
                             RequestQueue requestQue=Volley.newRequestQueue(context);
                             SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, teamPermissonUrl, new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
-
+                                    Log.e("dddd",response);
                                 }
                             }, new Response.ErrorListener() {
                                 @Override
@@ -106,7 +106,6 @@ public class TeamlistRecyclerAdapter extends RecyclerView.Adapter {
                             });
                             smpr.addStringParam("userId",readyMembers.get(getLayoutPosition()).userId);
                             smpr.addStringParam("teamName",G.captainTeam);
-
                             requestQue.add(smpr);
                         }
                     });

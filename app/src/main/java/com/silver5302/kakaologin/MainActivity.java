@@ -344,6 +344,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
     public void clickMatchingTeam(View v){
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragment=new MatchingFragment();
+        fragmentTransaction.add(R.id.success_layout,fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+
 
 
     }
