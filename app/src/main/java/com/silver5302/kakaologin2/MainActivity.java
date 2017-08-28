@@ -1,4 +1,4 @@
-package com.silver5302.kakaologin;
+package com.silver5302.kakaologin2;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +22,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ActionBarDrawerToggle drawerToggle;
     Toolbar toolbar;
     NavigationView navi;
+    ActionBar actionBar;
 
 
     AQuery aQuery;
@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout=(DrawerLayout)findViewById(R.id.layout_drawer);
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        actionBar=getSupportActionBar();
         drawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name,R.string.app_name){
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -89,8 +90,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 Menu menu=navi.getMenu();
                 MenuItem menuItem=menu.findItem(R.id.header_menu_regiList);
+                MenuItem menuItem1=menu.findItem(R.id.header_menu_matchList);
                 if(G.isCaptain!=null&&G.isCaptain.equals("captain")){
                     menuItem.setVisible(true);
+                    menuItem1.setVisible(true);
                 }
             }
         };
@@ -178,7 +181,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             Intent intent=new Intent(this,ReadyListActivity.class);
             startActivity(intent);
-
+        }else if(id==R.id.header_menu_matchList){
+            Intent intent=new Intent(this,MatchPermissonActivity.class);
+            startActivity(intent);
         }
 
 
@@ -245,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Log.e("onSuccess",userProfile.toString());
                 G.nickName=userProfile.getNickname();
                 G.userId=userProfile.getId()+"";
-               user_nickname.setText(userProfile.getNickname());
+                user_nickname.setText(userProfile.getNickname());
                 user_email.setText(userProfile.getEmail());
                 aQuery.id(user_img).image(userProfile.getThumbnailImagePath()); // <- 프로필 작은 이미지 , userProfile.getProfileImagePath() <- 큰 이미지
                 makeAndfindMysql();
@@ -349,6 +354,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.add(R.id.success_layout,fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+
 
 
 

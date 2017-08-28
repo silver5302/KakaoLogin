@@ -1,4 +1,4 @@
-package com.silver5302.kakaologin;
+package com.silver5302.kakaologin2;
 
 /**
  * Created by alfo06-19 on 2017-08-17.

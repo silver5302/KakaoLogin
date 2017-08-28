@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    tools:context="com.silver5302.kakaologin.IntroActivity">
+    tools:context="com.silver5302.kakaologin2.IntroActivity">
 
     <LinearLayout
         android:id="@+id/linear"

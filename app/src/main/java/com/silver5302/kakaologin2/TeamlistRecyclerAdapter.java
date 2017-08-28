@@ -1,4 +1,4 @@
-package com.silver5302.kakaologin;
+package com.silver5302.kakaologin2;
 
 import android.content.Context;
 import android.content.DialogInterface;

@@ -1,4 +1,4 @@
-package com.silver5302.kakaologin;
+package com.silver5302.kakaologin2;
 
 import android.app.Application;
 import android.content.Context;
