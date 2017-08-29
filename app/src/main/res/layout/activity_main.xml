@@ -16,57 +16,47 @@
             android:layout_height="?android:attr/actionBarSize"
             android:theme="@style/toolbar"></android.support.v7.widget.Toolbar>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/success_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/toolbar"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:background="@drawable/i87">
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@color/colorAccent"
-                android:onClick="clickMakeTeam"
-                android:text="팀 생성"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_marginBottom="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true">
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                <Button
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/select_btn_maketeam"
+                    android:onClick="clickMakeTeam" />
 
-                android:layout_weight="1"
-                android:background="@color/com_kakao_button_background_press"
-                android:onClick="clickFindTeam"
-                android:text="팀 찾기 및 가입"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                <Button
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/select_btn_registteam"
+                    android:onClick="clickFindTeam" />
 
-            <Button
+                <Button
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/select_btn_matching"
+                    android:onClick="clickMatchingTeam" />
 
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@color/colorPrimary"
-                android:onClick="clickMatchingTeam"
-                android:text="팀 매칭"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                <Button
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/select_btn_mercenary"
+                    android:onClick="clickGeneral" />
+            </LinearLayout>
 
-            <Button
-
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@color/bg_login_button_highlighted"
-                android:onClick="clickGeneral"
-                android:text="용병 게시판"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+        </RelativeLayout>
 
         <com.kakao.usermgmt.LoginButton
             android:id="@+id/com_kakao_login"

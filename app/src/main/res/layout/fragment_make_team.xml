@@ -1,160 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4374D9"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    >
+    android:padding="20dp">
 
-    <LinearLayout
-        android:id="@+id/linear"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp"
-        >
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgview"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher_round" />
+        app:cardBackgroundColor="#B2CCFF"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
 
         <LinearLayout
+            android:id="@+id/linear"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="팀 이름 : "
-                android:textSize="24sp"
-                android:textStyle="bold" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgview"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:src="@drawable/thumb_person" />
+
 
             <EditText
                 android:id="@+id/edit_teamName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
-        </LinearLayout>
+                android:layout_marginTop="20dp"
+                android:background="#ffffff"
+                android:hint=" 팀 이름"
+                android:inputType="text"
+                android:textSize="24sp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="팀 유형 : "
-                android:textSize="24sp"
-                android:textStyle="bold" />
 
             <RadioGroup
                 android:id="@+id/radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="#ffffff"
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:checked="true"
                     android:id="@+id/radio_soccer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Soccer" />
+                    android:checked="true"
+                    android:text="축구팀" />
 
                 <RadioButton
                     android:id="@+id/radio_footsal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:text="footsal" />
+                    android:text="풋살팀" />
             </RadioGroup>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="활동지역 : "
-                android:textSize="24sp"
-                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="#ffffff"
                 android:prompt="@string/prompt"
-                android:spinnerMode="dropdown"></Spinner>
-        </LinearLayout>
+                android:spinnerMode="dialog"></Spinner>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="팀 인원 : "
-                android:textSize="24sp"
-                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/spinner2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:prompt="@string/prompt"
                 android:spinnerMode="dropdown"></Spinner>
-        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="팀 소개"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/edit_teamIntroduce"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="팀 소개하세요~!"
-                android:inputType="textMultiLine" />
-        </ScrollView>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/edit_teamIntroduce"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffffff"
+                    android:hint=" 팀 소개하세요."
+                    android:inputType="textMultiLine"
+                    android:textSize="24sp"/>
+            </ScrollView>
 
-            <Button
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_Ok"
-                android:text="확인" />
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btn_Cancel"
-                android:text="취소" />
+                <Button
+                    android:id="@+id/btn_Ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="확인" />
+
+                <Button
+                    android:id="@+id/btn_Cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="취소" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+
+    </android.support.v7.widget.CardView>
 
 
 </ScrollView>

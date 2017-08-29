@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private SessionCallback callback;
     TextView user_nickname,user_email;
     CircleImageView user_img;
-    LinearLayout success_layout;
+    RelativeLayout success_layout;
     Fragment fragment;
     UserProfile profile;
 
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // 로그인 성공 시 사용할 뷰
         View headerView=navi.getHeaderView(0);
-        success_layout = (LinearLayout)findViewById(R.id.success_layout);
+        success_layout = (RelativeLayout) findViewById(R.id.success_layout);
         user_nickname =(TextView)headerView.findViewById(R.id.tv_header_name);
         user_img =(CircleImageView) headerView.findViewById(R.id.img_header);
         user_email =(TextView)headerView.findViewById(R.id.tv_header_mail);
