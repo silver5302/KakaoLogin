@@ -185,6 +185,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else if(id==R.id.header_menu_matchList){
             Intent intent=new Intent(this,MatchPermissonActivity.class);
             startActivity(intent);
+        }else if(id==R.id.header_menu_searchteam){
+            FragmentTransaction tran=fragmentManager.beginTransaction();
+            fragment=new SearchTeamFragment();
+            tran.add(R.id.success_layout,fragment);
+            tran.addToBackStack(null);
+            tran.commit();
+        }else if (id==R.id.header_menu_matching){
+            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+            fragment=new MatchingFragment();
+            fragmentTransaction.add(R.id.success_layout,fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
         }
 
 

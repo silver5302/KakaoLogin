@@ -5,6 +5,18 @@
         android:id="@+id/header_menu_logout"
         android:icon="@drawable/logout2"
         android:title="로그아웃" />
+
+    <item
+        android:id="@+id/header_menu_searchteam"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="팀찾기"
+        />
+
+    <item
+        android:id="@+id/header_menu_matching"
+        android:icon="@drawable/ic_thumbs_up_down_black_24dp"
+        android:title="매칭하기"
+        />
     <item
         android:id="@+id/header_menu_regiList"
         android:icon="@drawable/ic_person_add_black_24dp"
