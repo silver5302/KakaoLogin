@@ -3,9 +3,9 @@
 
     <item
         android:state_pressed="true"
-        android:drawable="@drawable/cooltext256489528856578"
+        android:drawable="@drawable/make"
         />
     <item
         android:state_pressed="false"
-        android:drawable="@drawable/cooltext256489528856578mouse"/>
+        android:drawable="@drawable/makemouse"/>
 </selector>

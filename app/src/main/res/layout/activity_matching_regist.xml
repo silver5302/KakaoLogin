@@ -15,39 +15,37 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#4374D9"
+        android:padding="20dp">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/img"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:src="@mipmap/ic_launcher_round" />
-
-            <TextView
-                android:id="@+id/tv_teamname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="ddddd"
-                android:textSize="18sp" />
+            app:cardBackgroundColor="#B2CCFF"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="8dp"
+            app:contentPadding="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/thumb_person" />
 
                 <TextView
+                    android:id="@+id/tv_teamname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="경기 유형 : "
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:text="ddddd"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -55,108 +53,110 @@
                     android:id="@+id/radio_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:background="#ffffff"
                     android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/radio_soccer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:checked="true"
-                        android:text="Soccer" />
+                        android:text="축구경기" />
 
                     <RadioButton
                         android:id="@+id/radio_footsal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
-                        android:text="footsal" />
+                        android:text="풋살경기" />
                 </RadioGroup>
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="경기 시간 : "
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btn_select_time"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="시간 선택"
-                    android:onClick="clickSelectTime"/>
+                    android:layout_marginTop="16dp">
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/btn_select_time"
+                        android:layout_width="140dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/select_btn_matchtime"
+                        android:onClick="clickSelectTime" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="경기 시간 : "
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tv_time"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:background="#ffffff"
+                        android:text="12시 00분"
+                        android:gravity="center"
+                        android:textSize="24sp" />
+                </LinearLayout>
+
+
                 <EditText
                     android:id="@+id/edit_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="#ffffff"
+                    android:hint="폰번호 Ex)01012341234"
                     android:inputType="phone"
-                    android:hint="ex) 01012341234"/>
-
-            </LinearLayout>
+                    android:textSize="24sp" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:text="팀 소개"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:text="팀 소개"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/edit_teamIntroduce"
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Ex)매치팀 구합니다~!!\n저희팀은 ~~팀입니다.\n경기장소:"
-                    android:inputType="textMultiLine" />
-            </ScrollView>
-            <LinearLayout
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
+                    android:layout_height="wrap_content">
 
-                <Button
+                    <EditText
+                        android:id="@+id/edit_teamIntroduce"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#ffffff"
+                        android:hint="Ex)매치팀 구합니다~!!\n저희팀은 ~~팀입니다.\n경기장소:"
+                        android:inputType="textMultiLine"
+                        android:textSize="20sp" />
+                </ScrollView>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="clickOk"
-                    android:text="확인" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="clickCancel"
-                    android:text="취소" />
+                    <Button
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/select_btn_ok"
+                        android:onClick="clickOk" />
+
+                    <Button
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/select_btn_cancel"
+                        android:onClick="clickCancel" />
+                </LinearLayout>
+
             </LinearLayout>
 
-        </LinearLayout>
+        </android.support.v7.widget.CardView>
 
     </ScrollView>
 

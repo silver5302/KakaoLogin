@@ -114,7 +114,29 @@ public class MatchingFragment extends Fragment {
 
                 }
 
-                btnRegion.setText(region);
+
+                ////////////////////////
+
+                int n=0;
+                String[] arr= getResources().getStringArray(R.array.datas_location);
+                for(int i=0; i<arr.length; i++){
+                    if(arr[i].equals(region)){
+                        n= i;
+                        break;
+                    }
+                }
+
+                int[] imgs={R.drawable.alllocation,R.drawable.seoul,R.drawable.busan,R.drawable.incheon,R.drawable.daegu,R.drawable.gwangju,R.drawable.dajeon,
+                R.drawable.ulsan,R.drawable.kyungki,R.drawable.kangwon,R.drawable.chungbuk,R.drawable.chungnam,R.drawable.jeonbuk,R.drawable.jeonnam,R.drawable.kyungbuk,
+                R.drawable.kyungnam,R.drawable.jeju};
+
+                btnRegion.setBackgroundResource(imgs[n]);
+
+
+
+                ///////////////////////
+
+
                 RequestQueue requestQueue = Volley.newRequestQueue(getContext());
                 SimpleMultiPartRequest smpr = new SimpleMultiPartRequest(Request.Method.POST, matchCalendarURL, new Response.Listener<String>() {
                     @Override

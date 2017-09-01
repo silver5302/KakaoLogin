@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="datas_location">
+        <item>지역을 선택하세요.</item>
         <item>서울특별시</item>
         <item>부산광역시</item>
         <item>인천광역시</item>
@@ -19,6 +20,7 @@
         <item>제주도</item>
     </string-array>
     <string-array name="datas_number">
+        <item> 인원을 선택하세요.</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>

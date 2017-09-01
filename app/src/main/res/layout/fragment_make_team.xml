@@ -13,14 +13,15 @@
         android:layout_height="match_parent"
         app:cardBackgroundColor="#B2CCFF"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp">
+        app:cardElevation="8dp"
+        app:contentPadding="16dp">
 
         <LinearLayout
             android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="16dp">
+            >
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgview"
@@ -70,9 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="#ffffff"
-                android:prompt="@string/prompt"
-                android:spinnerMode="dialog"></Spinner>
+                android:spinnerMode="dropdown"></Spinner>
 
 
             <Spinner
@@ -80,7 +79,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:prompt="@string/prompt"
                 android:spinnerMode="dropdown"></Spinner>
 
             <ScrollView
@@ -99,6 +97,7 @@
             </ScrollView>
 
             <LinearLayout
+                android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -106,15 +105,18 @@
 
                 <Button
                     android:id="@+id/btn_Ok"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="확인" />
+                    android:background="@drawable/select_btn_ok"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                     />
 
                 <Button
+                    android:background="@drawable/select_btn_cancel"
                     android:id="@+id/btn_Cancel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="취소" />
+                    android:layout_width="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="40dp"
+                     />
             </LinearLayout>
         </LinearLayout>
 

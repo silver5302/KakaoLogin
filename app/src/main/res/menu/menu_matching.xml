@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/menu_matching"
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@drawable/ic_edit_white_24dp"
         android:orderInCategory="0"
         android:title="글쓰기"
         app:showAsAction="always"></item>

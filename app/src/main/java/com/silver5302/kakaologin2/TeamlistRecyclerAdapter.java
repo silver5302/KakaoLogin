@@ -61,7 +61,7 @@ public class TeamlistRecyclerAdapter extends RecyclerView.Adapter {
             String ultimateImgUrl="http://silver5302.dothome.co.kr/Team/"+imgUrl;
             Glide.with(context).load(ultimateImgUrl).into(myHolder.imageView);
         }else{
-            Glide.with(context).load(R.mipmap.ic_launcher_round).into(myHolder.imageView);
+            Glide.with(context).load(R.drawable.thumb_person).into(myHolder.imageView);
         }
     }
 

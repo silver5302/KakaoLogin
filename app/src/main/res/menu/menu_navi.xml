@@ -7,13 +7,13 @@
         android:title="로그아웃" />
     <item
         android:id="@+id/header_menu_regiList"
-        android:icon="@android:drawable/ic_menu_gallery"
-        android:title="가입신청온애들"
+        android:icon="@drawable/ic_person_add_black_24dp"
+        android:title="가입신청들어온명단"
         android:visible="false" />
     <item
         android:id="@+id/header_menu_matchList"
-        android:icon="@android:drawable/ic_menu_gallery"
-        android:title="매칭리스트"
+        android:icon="@drawable/ic_file_upload_black_24dp"
+        android:title="내가올린매칭"
         android:visible="false" />
 
 </menu>

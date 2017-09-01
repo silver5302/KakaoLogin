@@ -1,6 +1,7 @@
 package com.silver5302.kakaologin2;
 
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -29,6 +31,8 @@ public class MatchingActivity extends AppCompatActivity {
     ArrayList<MatchingTeamItem> matchingTeamItems=new ArrayList<>();
     MatchingRecyclerAdapter adapter;
     RecyclerView recyclerView;
+    SwipeRefreshLayout swipelayout;
+    TextView tvNomatch;
     String matchTeamLoadURL="http://silver5302.dothome.co.kr/Team/matchLoad.php";
 
     @Override
@@ -44,6 +48,7 @@ public class MatchingActivity extends AppCompatActivity {
         actionBar=getSupportActionBar();
         actionBar.setTitle(date);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        tvNomatch=(TextView)findViewById(R.id.tv_nomatch);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,14 +59,15 @@ public class MatchingActivity extends AppCompatActivity {
         adapter=new MatchingRecyclerAdapter(this,matchingTeamItems);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-
         RequestQueue requestQueue=Volley.newRequestQueue(this);
         SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, matchTeamLoadURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(response.equals("")){
+                    tvNomatch.setVisibility(View.VISIBLE);
                     return;
                 }
+                tvNomatch.setVisibility(View.GONE);
                 String[] strs=response.split(";");
                 for(int i=0;i<strs.length;i++){
                     String[] unitStrs=strs[i].split("&");
@@ -86,8 +92,52 @@ public class MatchingActivity extends AppCompatActivity {
         smpr.addStringParam("region",region);
         requestQueue.add(smpr);
 
+        swipelayout=(SwipeRefreshLayout)findViewById(R.id.swipelayout);
+        swipelayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                matchingTeamItems.clear();
+                RequestQueue requestQueue=Volley.newRequestQueue(MatchingActivity.this);
+                SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, matchTeamLoadURL, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if(response.equals("")){
+                            tvNomatch.setVisibility(View.VISIBLE);
+                            return;
+                        }
+                        tvNomatch.setVisibility(View.GONE);
+                        String[] strs=response.split(";");
+                        for(int i=0;i<strs.length;i++){
+                            String[] unitStrs=strs[i].split("&");
+                            matchingTeamItems.add(new MatchingTeamItem(unitStrs[0],unitStrs[1],unitStrs[2],
+                                    unitStrs[3],unitStrs[4],unitStrs[5],unitStrs[6],unitStrs[7]));
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+
+                smpr.addStringParam("date",date);
+                smpr.addStringParam("region",region);
+                requestQueue.add(smpr);
+
+
+
+                swipelayout.setRefreshing(false);
+            }
+        });
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,6 +146,7 @@ public class MatchingActivity extends AppCompatActivity {
 
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

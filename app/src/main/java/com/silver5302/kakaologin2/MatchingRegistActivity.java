@@ -28,7 +28,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MatchingRegistActivity extends AppCompatActivity {
 
     CircleImageView imageView;
-    TextView teamName;
+    TextView teamName,tvTime;
     RadioGroup radioGroup;
     EditText editTeamInform,editPhone;
     Button btnSelectTime;
@@ -68,6 +68,7 @@ public class MatchingRegistActivity extends AppCompatActivity {
         editTeamInform=(EditText)findViewById(R.id.edit_teamIntroduce);
         editPhone=(EditText)findViewById(R.id.edit_phone);
         btnSelectTime=(Button)findViewById(R.id.btn_select_time);
+        tvTime=(TextView)findViewById(R.id.tv_time);
         RequestQueue requestque=Volley.newRequestQueue(this);
         SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, matchRegistURL, new Response.Listener<String>() {
             @Override
@@ -75,7 +76,7 @@ public class MatchingRegistActivity extends AppCompatActivity {
                 String[] str=response.split("&");
 
                 if(str[0].equals("")){
-                    Glide.with(MatchingRegistActivity.this).load(R.mipmap.ic_launcher_round).into(imageView);
+                    Glide.with(MatchingRegistActivity.this).load(R.drawable.thumb_person).into(imageView);
                 }else{
                     String ultimateImgUrl="http://silver5302.dothome.co.kr/Team/"+str[0];
                     Glide.with(MatchingRegistActivity.this).load(ultimateImgUrl).into(imageView);
@@ -140,7 +141,8 @@ public class MatchingRegistActivity extends AppCompatActivity {
     TimePickerDialog.OnTimeSetListener timeSetListener=new TimePickerDialog.OnTimeSetListener() {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            btnSelectTime.setText(hourOfDay+"시 "+minute+"분");
+            tvTime.setText(hourOfDay+"시 "+minute+"분");
+
             time=hourOfDay+"시"+minute+"분";
         }
     };
