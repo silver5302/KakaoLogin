@@ -347,7 +347,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         fragment=new MakeTeamFragment();
-        fragmentTransaction.add(R.id.success_layout,fragment);
+        fragmentTransaction.replace(R.id.success_layout,fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
@@ -356,7 +356,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         FragmentTransaction tran=fragmentManager.beginTransaction();
         fragment=new SearchTeamFragment();
-        tran.add(R.id.success_layout,fragment);
+        tran.replace(R.id.success_layout,fragment);
         tran.addToBackStack(null);
         tran.commit();
 
@@ -365,7 +365,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void clickMatchingTeam(View v){
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         fragment=new MatchingFragment();
-        fragmentTransaction.add(R.id.success_layout,fragment);
+        fragmentTransaction.replace(R.id.success_layout,fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
@@ -376,7 +376,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     public void clickGeneral(View v){
 
-
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragment=new MerceneryFragment();
+        fragmentTransaction.replace(R.id.success_layout,fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
 

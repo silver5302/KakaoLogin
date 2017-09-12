@@ -29,13 +29,14 @@
             android:value="@string/kakao_app_key" />
 
         <activity android:name=".MainActivity" />
-        <activity android:name=".RegistActivity" />
+        <activity android:name=".RegistMemberActivity" />
         <activity android:name=".ReadyListActivity" />
         <activity android:name=".MatchingActivity" />
         <activity android:name=".MatchingRegistActivity" />
         <activity android:name=".SelectRegionActivity" />
         <activity android:name=".MatchingInformActivity" />
-        <activity android:name=".MatchPermissonActivity"></activity>
+        <activity android:name=".MatchPermissonActivity" />
+        <activity android:name=".RegistMeceneryActivity"></activity>
     </application>
 
 </manifest>
