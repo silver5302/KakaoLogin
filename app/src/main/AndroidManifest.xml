@@ -36,7 +36,8 @@
         <activity android:name=".SelectRegionActivity" />
         <activity android:name=".MatchingInformActivity" />
         <activity android:name=".MatchPermissonActivity" />
-        <activity android:name=".RegistMeceneryActivity"></activity>
+        <activity android:name=".RegistSupportActivity" />
+        <activity android:name=".RegistRecruitActivity"></activity>
     </application>
 
 </manifest>
