@@ -6,22 +6,27 @@
     android:layout_height="match_parent">
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:background="@drawable/i87">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:theme="@style/toolbar"></android.support.v7.widget.Toolbar>
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                ></android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
 
         <RelativeLayout
             android:id="@+id/success_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/toolbar"
             >
 
             <LinearLayout
@@ -54,7 +59,7 @@
                     android:layout_width="250dp"
                     android:layout_height="50dp"
                     android:background="@drawable/select_btn_mercenary"
-                    android:onClick="clickGeneral" />
+                    android:onClick="clickMercenery" />
             </LinearLayout>
 
         </RelativeLayout>
@@ -65,7 +70,7 @@
             android:layout_height="70dp"
             android:layout_centerInParent="true" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <!--네비영역-->
     <android.support.design.widget.NavigationView

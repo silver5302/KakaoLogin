@@ -16,10 +16,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".IntroActivity"
-            android:theme="@style/AppTheme.NoAction">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -37,7 +36,8 @@
         <activity android:name=".MatchingInformActivity" />
         <activity android:name=".MatchPermissonActivity" />
         <activity android:name=".RegistSupportActivity" />
-        <activity android:name=".RegistRecruitActivity"></activity>
+        <activity android:name=".RegistRecruitActivity" />
+        <activity android:name=".MerceneryActivity"></activity>
     </application>
 
 </manifest>

@@ -10,13 +10,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class PagerAdapter extends FragmentPagerAdapter {
 
-    Fragment[] fragments=new Fragment[2];
-    String[] tabnames=new String[]{"용병모집","용병지원"};
+    Fragment[] fragments = new Fragment[2];
+    String[] tabnames = new String[]{"용병모집", "용병지원"};
 
     public PagerAdapter(FragmentManager fm) {
         super(fm);
-        fragments[0]=new RecruitFragment();
-        fragments[1]=new SupportFragment();
+        fragments[0] = new RecruitFragment();
+        fragments[1] = new SupportFragment();
 
     }
 

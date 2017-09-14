@@ -374,13 +374,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     }
-    public void clickGeneral(View v){
+    public void clickMercenery(View v){
 
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragment=new MerceneryFragment();
-        fragmentTransaction.replace(R.id.success_layout,fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        Intent intent=new Intent(this,MerceneryActivity.class);
+        startActivity(intent);
     }
 
 
