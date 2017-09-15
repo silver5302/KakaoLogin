@@ -3,17 +3,17 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#ff9900</item>
-        <item name="colorPrimaryDark">#008833</item>
+        <item name="colorPrimary">#94CCBD</item>
+        <item name="colorPrimaryDark">#5B7484</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
 
     <style name="AppTheme.Appbar">
 
-        <item name="android:textColor">#000000</item>
-        <item name="android:textColorPrimary">#003300</item>
-        <item name="colorControlNormal">#006600</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textColorPrimary">#ffffff</item>
+        <item name="colorControlNormal">#ffffff</item>
 
     </style>
 

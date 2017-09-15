@@ -7,16 +7,22 @@
     android:orientation="vertical"
     tools:context="com.silver5302.kakaologin2.RegistMemberActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        ></android.support.v7.widget.Toolbar>
+        android:layout_height="wrap_content"
+        app:theme="@style/AppTheme.Appbar"
+        >
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            ></android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#4374D9"
+        android:background="@color/colorBack"
         android:padding="20dp">
 
         <LinearLayout
@@ -27,7 +33,7 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="#B2CCFF"
+                app:cardBackgroundColor="@color/colorContent"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="8dp"
                 app:contentPadding="10dp">

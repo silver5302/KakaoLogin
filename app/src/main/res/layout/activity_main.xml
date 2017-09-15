@@ -6,15 +6,17 @@
     android:layout_height="match_parent">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/i87">
+        android:background="@color/colorBack">
 
         <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:theme="@style/AppTheme.Appbar"
+            >
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -24,6 +26,8 @@
 
 
         <RelativeLayout
+            android:layout_below="@id/appbar"
+            android:visibility="invisible"
             android:id="@+id/success_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -62,17 +66,21 @@
                     android:onClick="clickMercenery" />
             </LinearLayout>
 
+
         </RelativeLayout>
 
         <com.kakao.usermgmt.LoginButton
             android:id="@+id/com_kakao_login"
             android:layout_width="300dp"
             android:layout_height="70dp"
+            android:visibility="visible"
             android:layout_centerInParent="true" />
 
-    </LinearLayout>
+
+    </RelativeLayout>
 
     <!--네비영역-->
+
     <android.support.design.widget.NavigationView
         android:id="@+id/navi"
         android:layout_width="wrap_content"
