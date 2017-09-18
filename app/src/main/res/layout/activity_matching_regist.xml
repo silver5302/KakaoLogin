@@ -61,6 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="#ffffff"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -134,7 +135,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#ffffff"
-                        android:hint="Ex)매치팀 구합니다~!!\n저희팀은 ~~팀입니다.\n경기장소:"
+                        android:hint="Ex)매치팀 구합니다~!!\n저희팀은 ~~팀입니다.\n경기장소:\n연락주세요^^"
                         android:inputType="textMultiLine"
                         android:textSize="20sp" />
                 </ScrollView>

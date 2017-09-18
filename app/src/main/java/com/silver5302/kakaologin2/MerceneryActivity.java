@@ -1,5 +1,7 @@
 package com.silver5302.kakaologin2;
 
+
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -7,7 +9,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
+
 
 public class MerceneryActivity extends AppCompatActivity {
 
@@ -34,15 +40,30 @@ public class MerceneryActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        fab=(FloatingActionButton)findViewById(R.id.fab);
         tabLayout=(TabLayout)findViewById(R.id.layout_tab);
         pager=(ViewPager)findViewById(R.id.pager);
-        fab=(FloatingActionButton)findViewById(R.id.fab);
-
 
         adapter=new PagerAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
         tabLayout.setupWithViewPager(pager);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (pager.getCurrentItem()){
+                    case 0:
+                        Intent intent=new Intent(MerceneryActivity.this,RegistRecruitActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        Intent intent2=new Intent(MerceneryActivity.this,RegistSupportActivity.class);
+                        startActivity(intent2);
+                        break;
+                }
+            }
+        });
+
 
     }
 }
