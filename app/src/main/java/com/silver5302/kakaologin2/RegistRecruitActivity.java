@@ -81,7 +81,7 @@ public class RegistRecruitActivity extends AppCompatActivity {
 
 
         RequestQueue requestQueue=Volley.newRequestQueue(this);
-        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, loadTeamImgURL, new Response.Listener<String>() {
+        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.GET, loadTeamImgURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(response.equals(""))return;

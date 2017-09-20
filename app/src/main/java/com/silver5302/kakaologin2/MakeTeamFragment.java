@@ -269,7 +269,7 @@ public class MakeTeamFragment extends Fragment {
 
                     //웹으로 전송하기.
                     RequestQueue requestQue = Volley.newRequestQueue(getContext());
-                    SimpleMultiPartRequest smpr = new SimpleMultiPartRequest(Request.Method.POST, uploadImgUrl, new Response.Listener<String>() {
+                    SimpleMultiPartRequest smpr = new SimpleMultiPartRequest(Request.Method.GET, uploadImgUrl, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
 
@@ -313,6 +313,8 @@ public class MakeTeamFragment extends Fragment {
 
                     SQLiteDatabase db=getActivity().openOrCreateDatabase("teams.db",Context.MODE_PRIVATE,null);
                     db.execSQL("insert into teams(teamName,isCaptain,isJoin) values(?,?,?)",new String[]{name,"1","1"});
+                    G.captainTeam=name;
+
 
 
 

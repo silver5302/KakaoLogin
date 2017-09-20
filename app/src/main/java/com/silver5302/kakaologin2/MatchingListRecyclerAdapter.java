@@ -52,7 +52,7 @@ public class MatchingListRecyclerAdapter extends RecyclerView.Adapter {
         final MatchlistHolder holder1=(MatchlistHolder)holder;
 
         RequestQueue requestQueue=Volley.newRequestQueue(context);
-        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, matchInformImgURL, new Response.Listener<String>() {
+        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.GET, matchInformImgURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(response.equals(""))return;
@@ -103,7 +103,7 @@ public class MatchingListRecyclerAdapter extends RecyclerView.Adapter {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             RequestQueue requestQueue=Volley.newRequestQueue(context);
-                            SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, matchOkURL, new Response.Listener<String>() {
+                            SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.GET, matchOkURL, new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
                                 }

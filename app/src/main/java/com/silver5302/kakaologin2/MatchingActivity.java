@@ -60,7 +60,7 @@ public class MatchingActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         RequestQueue requestQueue=Volley.newRequestQueue(this);
-        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, matchTeamLoadURL, new Response.Listener<String>() {
+        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.GET, matchTeamLoadURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(response.equals("")){
@@ -98,7 +98,7 @@ public class MatchingActivity extends AppCompatActivity {
             public void onRefresh() {
                 matchingTeamItems.clear();
                 RequestQueue requestQueue=Volley.newRequestQueue(MatchingActivity.this);
-                SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, matchTeamLoadURL, new Response.Listener<String>() {
+                SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.GET, matchTeamLoadURL, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         if(response.equals("")){

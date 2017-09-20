@@ -296,6 +296,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             G.isCaptain="captain";
             G.captainTeam=teamName;
             G.Team.add(teamName);
+
+
         }
 
         //가입신청한팀 찾기

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -50,9 +51,10 @@ public class ReadyListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
 
         RequestQueue requestQueue=Volley.newRequestQueue(ReadyListActivity.this);
-        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST,readyListUrl, new Response.Listener<String>() {
+        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.GET,readyListUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.e("response",response+G.captainTeam);
                 if(response.equals(""))return;
                 String[] strs=response.split(";");
                 for(int i=0;i<strs.length;i++){

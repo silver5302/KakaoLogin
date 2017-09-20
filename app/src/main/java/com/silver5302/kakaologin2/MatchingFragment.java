@@ -57,7 +57,7 @@ public class MatchingFragment extends Fragment {
         });
         calendarView = (MCalendarView) view.findViewById(R.id.calendar);
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        SimpleMultiPartRequest smpr = new SimpleMultiPartRequest(Request.Method.POST, matchCalendarURL, new Response.Listener<String>() {
+        SimpleMultiPartRequest smpr = new SimpleMultiPartRequest(Request.Method.GET, matchCalendarURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(response.equals(""))return;

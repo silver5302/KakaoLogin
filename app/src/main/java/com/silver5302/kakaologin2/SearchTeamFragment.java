@@ -92,7 +92,7 @@ public class SearchTeamFragment extends Fragment {
                 try {
                     URL url=new URL(loadUrl);
                     HttpURLConnection conn=(HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
+                    conn.setRequestMethod("GET");
                     conn.setDoInput(true);
                     conn.setUseCaches(false);
 

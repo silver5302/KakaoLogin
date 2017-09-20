@@ -93,7 +93,7 @@ public class RegistMemberActivity extends AppCompatActivity {
             Toast.makeText(this, "빈칸을 채워주세요.", Toast.LENGTH_SHORT).show();
         }else{
             RequestQueue requestQueue=Volley.newRequestQueue(RegistMemberActivity.this);
-            SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, memberinsertUrl, new Response.Listener<String>() {
+            SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.GET, memberinsertUrl, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     Toast.makeText(RegistMemberActivity.this, response, Toast.LENGTH_SHORT).show();

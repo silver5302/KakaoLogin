@@ -14,6 +14,6 @@ public class G {
 //    public static ArrayList<String> teams=new ArrayList<>();
 
     public static String captainTeam=null;
-    public static ArrayList<String> Team=null;
+    public static ArrayList<String> Team=new ArrayList<>();
 
 }

@@ -70,7 +70,7 @@ public class MatchingRegistActivity extends AppCompatActivity {
         btnSelectTime=(Button)findViewById(R.id.btn_select_time);
         tvTime=(TextView)findViewById(R.id.tv_time);
         RequestQueue requestque=Volley.newRequestQueue(this);
-        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, matchRegistURL, new Response.Listener<String>() {
+        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.GET, matchRegistURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 String[] str=response.split("&");
@@ -108,7 +108,7 @@ public class MatchingRegistActivity extends AppCompatActivity {
             return;
         }
         RequestQueue requestQue=Volley.newRequestQueue(this);
-        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, matchRegistInsertURL, new Response.Listener<String>() {
+        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.GET, matchRegistInsertURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

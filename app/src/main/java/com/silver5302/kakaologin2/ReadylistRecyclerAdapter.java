@@ -93,7 +93,7 @@ public class ReadylistRecyclerAdapter extends RecyclerView.Adapter {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             RequestQueue requestQue=Volley.newRequestQueue(context);
-                            SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, teamPermissonUrl, new Response.Listener<String>() {
+                            SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.GET, teamPermissonUrl, new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
                                     Log.e("dddd",response);
