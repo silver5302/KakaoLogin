@@ -295,7 +295,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             G.isCaptain="captain";
             G.captainTeam=teamName;
-            Log.e("captain",teamName);
+            G.Team.add(teamName);
         }
 
         //가입신청한팀 찾기
@@ -306,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Log.e("teamname",teamName);
                 int isJoin=cursor2.getInt(cursor2.getColumnIndex("isJoin"));
                 if(isJoin==1){
-                    Log.e("가입된팀",teamName);
+                    G.Team.add(teamName);
                 }else if(isJoin==0){
                     //팀멤버리스트 테이블에 내가 속해있는지 확인하기
                     RequestQueue requestQue= Volley.newRequestQueue(this);
@@ -337,6 +337,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         }
+
         db.close();
     }
     public void clickMakeTeam(View v){

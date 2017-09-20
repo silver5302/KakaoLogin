@@ -25,169 +25,208 @@
         android:background="@color/colorBack"
         android:padding="20dp">
 
-        <android.support.v7.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:cardBackgroundColor="@color/colorContent"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="8dp"
-            app:contentPadding="16dp">
-
-            <LinearLayout
+            android:orientation="vertical">
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/colorContent"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="8dp"
+                app:contentPadding="10dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/img"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/thumb_person" />
-
-                <TextView
-                    android:id="@+id/tv_teamname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:text="ddddd"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <RadioGroup
-                    android:id="@+id/radio_group"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="#ffffff"
-                    android:gravity="center"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                    <RadioButton
-                        android:id="@+id/radio_soccer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:text="축구경기" />
-
-                    <RadioButton
-                        android:id="@+id/radio_footsal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:text="풋살경기" />
-                </RadioGroup>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp">
-
-                    <Button
-                        android:id="@+id/btn_select_date"
-                        android:layout_width="120dp"
-                        android:layout_height="32dp"
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/select_btn_matchdate"
-                        android:onClick="clickSelectDate" />
+                        android:src="@drawable/thumb_person" />
 
-                    <TextView
-                        android:id="@+id/tv_date"
-                        android:layout_gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:background="#ffffff"
-                        android:text="1월 1일"
-                        android:gravity="center"
-                        android:textSize="20sp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp">
-
-                    <Button
-                        android:id="@+id/btn_select_time"
-                        android:layout_width="140dp"
-                        android:layout_height="32dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/select_btn_matchtime"
-                        android:onClick="clickSelectTime" />
-
-                    <TextView
-                        android:id="@+id/tv_time"
-                        android:layout_gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:background="#ffffff"
-                        android:text="12시 00분"
-                        android:gravity="center"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-
-                <EditText
-                    android:id="@+id/edit_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="#ffffff"
-                    android:hint="폰번호 Ex)01012341234"
-                    android:inputType="phone"
-                    android:textSize="24sp" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="16dp"
-                    android:text="팀 소개"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/edit_teamIntroduce"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#ffffff"
-                        android:hint="Ex)용병 구합니다~!!\n저희팀은 ~~팀입니다.\n경기장소:\n연락주세요^^"
-                        android:inputType="textMultiLine"
-                        android:textSize="20sp" />
-                </ScrollView>
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_teamname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="emfhrzmf"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="엠블럼을 누르시면 팀 변경이 가능합니다."
+                            android:textSize="14sp"
+                            android:textColor="@color/colorAccent"/>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="@color/colorContent"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="8dp"
+                app:contentPadding="16dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="16dp"
-                    android:orientation="horizontal">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <Button
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/select_btn_ok"
-                        android:onClick="clickOk" />
+                    <RadioGroup
+                        android:id="@+id/radio_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="#ffffff"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                    <Button
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="20dp"
-                        android:background="@drawable/select_btn_cancel"
-                        android:onClick="clickCancel" />
+                        <RadioButton
+                            android:id="@+id/radio_soccer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="축구경기" />
+
+                        <RadioButton
+                            android:id="@+id/radio_footsal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:text="풋살경기" />
+                    </RadioGroup>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp">
+
+                        <Button
+                            android:id="@+id/btn_select_date"
+                            android:layout_width="120dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/select_btn_matchdate"
+                            android:onClick="clickSelectDate" />
+
+                        <TextView
+                            android:id="@+id/tv_date"
+                            android:layout_gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:background="#ffffff"
+                            android:text="1월 1일"
+                            android:gravity="center"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp">
+
+                        <Button
+                            android:id="@+id/btn_select_time"
+                            android:layout_width="140dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/select_btn_matchtime"
+                            android:onClick="clickSelectTime" />
+
+                        <TextView
+                            android:id="@+id/tv_time"
+                            android:layout_gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:background="#ffffff"
+                            android:text="12시 00분"
+                            android:gravity="center"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+
+                    <EditText
+                        android:id="@+id/edit_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="#ffffff"
+                        android:hint="폰번호 Ex)01012341234"
+                        android:inputType="phone"
+                        android:textSize="24sp" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:text="팀 소개"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/edit_teamIntroduce"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#ffffff"
+                            android:hint="Ex)용병 구합니다~!!\n저희팀은 ~~팀입니다.\n경기장소:\n연락주세요^^"
+                            android:inputType="textMultiLine"
+                            android:textSize="20sp" />
+                    </ScrollView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/select_btn_ok"
+                            android:onClick="clickOk" />
+
+                        <Button
+                            android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="20dp"
+                            android:background="@drawable/select_btn_cancel"
+                            android:onClick="clickCancel" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
-            </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-        </android.support.v7.widget.CardView>
+        </LinearLayout>
+
 
     </ScrollView>
 

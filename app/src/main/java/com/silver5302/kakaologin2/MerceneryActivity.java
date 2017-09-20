@@ -53,10 +53,16 @@ public class MerceneryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 switch (pager.getCurrentItem()){
                     case 0:
-                        Intent intent=new Intent(MerceneryActivity.this,RegistRecruitActivity.class);
-                        startActivity(intent);
+                        if(G.Team.size()>=1){
+
+                            Intent intent=new Intent(MerceneryActivity.this,RegistRecruitActivity.class);
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(MerceneryActivity.this, "팀이 없습니다.", Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case 1:
+
                         Intent intent2=new Intent(MerceneryActivity.this,RegistSupportActivity.class);
                         startActivity(intent2);
                         break;

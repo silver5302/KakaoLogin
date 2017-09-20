@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -23,7 +22,7 @@ public class ReadyListActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ArrayList<ReadyMember> readyMembers=new ArrayList<>();
-    TeamlistRecyclerAdapter adapter;
+    ReadylistRecyclerAdapter adapter;
     String readyListUrl="http://silver5302.dothome.co.kr/Team/readyListDB.php";
 
     Toolbar toolbar;
@@ -45,7 +44,7 @@ public class ReadyListActivity extends AppCompatActivity {
             }
         });
         recyclerView=(RecyclerView)findViewById(R.id.recycler);
-        adapter=new TeamlistRecyclerAdapter(this,readyMembers);
+        adapter=new ReadylistRecyclerAdapter(this,readyMembers);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));

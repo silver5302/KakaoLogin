@@ -27,7 +27,7 @@ public class MatchingInformActivity extends AppCompatActivity {
     TextView tvTeamName,tvType,tvDate,tvTime,tvInform,tvRegion;
     ActionBar actionBar;
     String teamName,type,date,time,inform,region,phone;
-    String matchInformImgURL="http://silver5302.dothome.co.kr/Team/matchInformImg.php";
+    String matchInformImgURL="http://silver5302.dothome.co.kr/Team/loadTeamImg.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

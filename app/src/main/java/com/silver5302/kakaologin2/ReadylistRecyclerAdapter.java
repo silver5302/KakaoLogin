@@ -27,13 +27,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by alfo06-19 on 2017-08-17.
  */
 
-public class TeamlistRecyclerAdapter extends RecyclerView.Adapter {
+public class ReadylistRecyclerAdapter extends RecyclerView.Adapter {
 
     Context context;
     ArrayList<ReadyMember> readyMembers;
     String teamPermissonUrl="http://silver5302.dothome.co.kr/Team/teamPermission.php";
 
-    public TeamlistRecyclerAdapter(Context context, ArrayList<ReadyMember> readyMembers) {
+    public ReadylistRecyclerAdapter(Context context, ArrayList<ReadyMember> readyMembers) {
         this.context = context;
         this.readyMembers = readyMembers;
     }
