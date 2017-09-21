@@ -49,7 +49,7 @@ public class MatchPermissonActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
 
         RequestQueue requestQueue= Volley.newRequestQueue(this);
-        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.GET, MyMatchListURL, new Response.Listener<String>() {
+        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, MyMatchListURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(response.equals("")) return;

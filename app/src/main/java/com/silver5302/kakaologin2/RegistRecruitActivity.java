@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -38,7 +39,9 @@ public class RegistRecruitActivity extends AppCompatActivity {
     RadioGroup radioGroup;
     RadioButton rb;
     EditText edit_phone,edit_teamintroduce;
-    String loadTeamImgURL="http://silver5302.dothome.co.kr/Team/loadTeamImg.php";
+    String matchRegistURL="http://silver5302.dothome.co.kr/Team/matchRegist.php";
+    String recruitInsertURL="http://silver5302.dothome.co.kr/Team/recruitInsert.php";
+
 
     String teamName=null;
     String type=null;
@@ -46,6 +49,7 @@ public class RegistRecruitActivity extends AppCompatActivity {
     String time=null;
     String phone=null;
     String introduce=null;
+    String region=null;
     int year,month,day;
 
     @Override
@@ -78,16 +82,20 @@ public class RegistRecruitActivity extends AppCompatActivity {
         String date=String.format("%d년%02d월%02d일",year,month+1,day);
         tv_date.setText(date);
 
-
-
         RequestQueue requestQueue=Volley.newRequestQueue(this);
-        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.GET, loadTeamImgURL, new Response.Listener<String>() {
+        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, matchRegistURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if(response.equals(""))return;
-                String imgurl="http://silver5302.dothome.co.kr/Team/"+response;
-                Glide.with(RegistRecruitActivity.this).load(imgurl).into(img);
+                String[] str=response.split("&");
+                if(str[0].equals("")){
+                }else{
+                    String ultimateImgUrl="http://silver5302.dothome.co.kr/Team/"+str[0];
+                    Glide.with(RegistRecruitActivity.this).load(ultimateImgUrl).into(img);
+                }
+
                 tv_teamName.setText(G.Team.get(0));
+                region=str[1];
+                teamName=G.Team.get(0);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -112,13 +120,19 @@ public class RegistRecruitActivity extends AppCompatActivity {
                             teamName = items[pos].toString();
 
                             RequestQueue requestQueue=Volley.newRequestQueue(RegistRecruitActivity.this);
-                            SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, loadTeamImgURL, new Response.Listener<String>() {
+                            SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, matchRegistURL, new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
                                     if(response.equals(""))return;
-                                    String imgurl="http://silver5302.dothome.co.kr/Team/"+response;
-                                    Glide.with(RegistRecruitActivity.this).load(imgurl).into(img);
+                                    String[] str=response.split("&");
+                                    if(str[0].equals("")){
+                                        Glide.with(RegistRecruitActivity.this).load(R.drawable.thumb_person).into(img);
+                                    }else{
+                                        String ultimateImgUrl="http://silver5302.dothome.co.kr/Team/"+str[0];
+                                        Glide.with(RegistRecruitActivity.this).load(ultimateImgUrl).into(img);
+                                    }
                                     tv_teamName.setText(teamName);
+                                    region=str[1];
                                 }
                             }, new Response.ErrorListener() {
                                 @Override
@@ -172,10 +186,40 @@ public class RegistRecruitActivity extends AppCompatActivity {
     };
 
     public void clickOk(View v){
+        rb=(RadioButton)findViewById(radioGroup.getCheckedRadioButtonId());
+        type=rb.getText().toString();
+        introduce=edit_teamintroduce.getText().toString();
+        phone=edit_phone.getText().toString();
+        if(type==null||date==null||time==null||introduce==null||phone==null){
+            Toast.makeText(this, "빈 칸을 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        RequestQueue requestQue=Volley.newRequestQueue(this);
+        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, recruitInsertURL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        smpr.addStringParam("teamName",teamName);
+        smpr.addStringParam("type",type);
+        smpr.addStringParam("time",time);
+        smpr.addStringParam("introduce",introduce);
+        smpr.addStringParam("date",date);
+        smpr.addStringParam("region",region);
+        smpr.addStringParam("phone",phone);
+        requestQue.add(smpr);
+
+        finish();
 
 
     }
     public void clickCancel(View v){
-
+        finish();
     }
 }

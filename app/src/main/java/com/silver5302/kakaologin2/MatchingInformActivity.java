@@ -67,7 +67,7 @@ public class MatchingInformActivity extends AppCompatActivity {
         tvTeamName.setText(teamName); tvRegion.setText(region);
 
         RequestQueue requestQueue=Volley.newRequestQueue(this);
-        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.GET, matchInformImgURL, new Response.Listener<String>() {
+        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST, matchInformImgURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(response.equals(""))return;

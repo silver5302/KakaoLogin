@@ -269,7 +269,7 @@ public class MakeTeamFragment extends Fragment {
 
                     //웹으로 전송하기.
                     RequestQueue requestQue = Volley.newRequestQueue(getContext());
-                    SimpleMultiPartRequest smpr = new SimpleMultiPartRequest(Request.Method.GET, uploadImgUrl, new Response.Listener<String>() {
+                    SimpleMultiPartRequest smpr = new SimpleMultiPartRequest(Request.Method.POST, uploadImgUrl, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
 

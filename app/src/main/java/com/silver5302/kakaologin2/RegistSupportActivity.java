@@ -117,7 +117,7 @@ public class RegistSupportActivity extends AppCompatActivity {
             return;
         }else{
             RequestQueue requestque=Volley.newRequestQueue(this);
-            SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.GET,supportInsertURL, new Response.Listener<String>() {
+            SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST,supportInsertURL, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     Toast.makeText(RegistSupportActivity.this, response, Toast.LENGTH_SHORT).show();

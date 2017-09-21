@@ -51,7 +51,7 @@ public class ReadyListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
 
         RequestQueue requestQueue=Volley.newRequestQueue(ReadyListActivity.this);
-        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.GET,readyListUrl, new Response.Listener<String>() {
+        SimpleMultiPartRequest smpr=new SimpleMultiPartRequest(Request.Method.POST,readyListUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.e("response",response+G.captainTeam);
