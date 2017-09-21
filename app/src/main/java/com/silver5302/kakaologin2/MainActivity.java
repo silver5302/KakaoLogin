@@ -295,6 +295,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             G.isCaptain="captain";
             G.captainTeam=teamName;
+            G.Team.clear();
             G.Team.add(teamName);
 
 
