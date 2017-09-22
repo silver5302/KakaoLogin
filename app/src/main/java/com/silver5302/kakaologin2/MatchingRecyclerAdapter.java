@@ -66,7 +66,7 @@ public class MatchingRecyclerAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context,MatchingInformActivity.class);
+                    Intent intent = new Intent(context,SelectedMatchingActivity.class);
                     intent.putExtra("teamName",matchingTeamItems.get(getLayoutPosition()).teamName);
                     intent.putExtra("date",matchingTeamItems.get(getLayoutPosition()).date);
                     intent.putExtra("time",matchingTeamItems.get(getLayoutPosition()).time);
