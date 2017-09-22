@@ -112,7 +112,7 @@ public class RegistSupportActivity extends AppCompatActivity {
         phone=edit_phone.getText().toString();
         introduce=edit_introduce.getText().toString();
 
-        if(region.contains("선택")||edit_introduce.getText().toString().equals("")||edit_phone.getText().toString().equals("")){
+        if(region.contains("선택")||edit_introduce.getText().toString().equals("")||edit_phone.getText().toString().equals("")||date==null){
             Toast.makeText(this, "빈 칸을 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
             return;
         }else{

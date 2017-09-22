@@ -104,7 +104,7 @@ public class MatchingRegistActivity extends AppCompatActivity {
         type=rb.getText().toString();
         inform=editTeamInform.getText().toString();
         phone=editPhone.getText().toString();
-        if(type==null||time==null||inform==null||phone==null){
+        if(type==null||time==null||inform.equals("")||phone.equals("")){
             Toast.makeText(this, "빈 칸을 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
             return;
         }

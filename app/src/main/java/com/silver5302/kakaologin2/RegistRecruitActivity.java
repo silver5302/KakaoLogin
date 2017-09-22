@@ -190,7 +190,9 @@ public class RegistRecruitActivity extends AppCompatActivity {
         type=rb.getText().toString();
         introduce=edit_teamintroduce.getText().toString();
         phone=edit_phone.getText().toString();
-        if(type==null||date==null||time==null||introduce==null||phone==null){
+
+        Log.e("intro",introduce+"abc");
+        if(type==null||date==null||time==null||introduce.equals("")||phone.equals("")){
             Toast.makeText(this, "빈 칸을 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
             return;
         }
