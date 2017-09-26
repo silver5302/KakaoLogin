@@ -29,7 +29,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MatchingListRecyclerAdapter extends RecyclerView.Adapter {
     Context context;
     ArrayList<MatchListItem> matchListItems;
-    String matchInformImgURL="http://silver5302.dothome.co.kr/Team/matchInformImg.php";
+    String matchInformImgURL="http://silver5302.dothome.co.kr/Team/loadTeamImg.php";
     String matchOkURL="http://silver5302.dothome.co.kr/Team/matchOk.php";
 
     public MatchingListRecyclerAdapter(Context context, ArrayList<MatchListItem> matchListItems) {
