@@ -38,7 +38,10 @@
         <activity android:name=".RegistRecruitActivity" />
         <activity android:name=".MerceneryActivity" />
         <activity android:name=".SelectedRecruitActivity" />
-        <activity android:name=".SelectedSupportActivity"></activity>
+        <activity android:name=".SelectedSupportActivity" />
+        <activity android:name=".MakeTeamActivity" />
+        <activity android:name=".SearchTeamActivity" />
+        <activity android:name=".MatchActivity"></activity>
     </application>
 
 </manifest>

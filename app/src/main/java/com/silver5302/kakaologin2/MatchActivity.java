@@ -3,16 +3,14 @@ package com.silver5302.kakaologin2;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
-
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,12 +24,7 @@ import sun.bob.mcalendarview.MarkStyle;
 import sun.bob.mcalendarview.listeners.OnDateClickListener;
 import sun.bob.mcalendarview.vo.DateData;
 
-/**
- * Created by alfo06-19 on 2017-08-21.
- */
-
-public class MatchingFragment extends Fragment {
-
+public class MatchActivity extends AppCompatActivity {
 
     String matchCalendarURL = "http://silver5302.dothome.co.kr/Team/matchCalendar.php";
     MCalendarView calendarView;
@@ -39,24 +32,38 @@ public class MatchingFragment extends Fragment {
     String region = "전체지역";
     String year, month, day;
 
+    Toolbar toolbar;
+    ActionBar actionBar;
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_match);
 
-        View view = inflater.inflate(R.layout.fragment_matching, container, false);
+        toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        actionBar=getSupportActionBar();
+        actionBar.setTitle("매칭하기");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
-        btnRegion = (Button) view.findViewById(R.id.btn_select_region);
+        btnRegion = (Button) findViewById(R.id.btn_select_region);
         btnRegion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), SelectRegionActivity.class);
+                Intent intent = new Intent(MatchActivity.this, SelectRegionActivity.class);
                 startActivityForResult(intent, 10);
 
             }
         });
-        calendarView = (MCalendarView) view.findViewById(R.id.calendar);
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        calendarView = (MCalendarView) findViewById(R.id.calendar);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
         SimpleMultiPartRequest smpr = new SimpleMultiPartRequest(Request.Method.POST, matchCalendarURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -86,8 +93,8 @@ public class MatchingFragment extends Fragment {
             @Override
             public void onDateClick(View view, DateData date) {
                 String realDate = date.getYear() + "년" + date.getMonthString() + "월" + date.getDayString() + "일";
-                Toast.makeText(getContext(), realDate, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), MatchingActivity.class);
+                Toast.makeText(MatchActivity.this, realDate, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MatchActivity.this, MatchingActivity.class);
                 intent.putExtra("date", realDate);
                 intent.putExtra("region", region);
                 startActivity(intent);
@@ -95,9 +102,7 @@ public class MatchingFragment extends Fragment {
         });
 
 
-        return view;
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -127,8 +132,8 @@ public class MatchingFragment extends Fragment {
                 }
 
                 int[] imgs={R.drawable.alllocation,R.drawable.seoul,R.drawable.busan,R.drawable.incheon,R.drawable.daegu,R.drawable.gwangju,R.drawable.dajeon,
-                R.drawable.ulsan,R.drawable.kyungki,R.drawable.kangwon,R.drawable.chungbuk,R.drawable.chungnam,R.drawable.jeonbuk,R.drawable.jeonnam,R.drawable.kyungbuk,
-                R.drawable.kyungnam,R.drawable.jeju};
+                        R.drawable.ulsan,R.drawable.kyungki,R.drawable.kangwon,R.drawable.chungbuk,R.drawable.chungnam,R.drawable.jeonbuk,R.drawable.jeonnam,R.drawable.kyungbuk,
+                        R.drawable.kyungnam,R.drawable.jeju};
 
                 btnRegion.setBackgroundResource(imgs[n]);
 
@@ -137,7 +142,7 @@ public class MatchingFragment extends Fragment {
                 ///////////////////////
 
 
-                RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                RequestQueue requestQueue = Volley.newRequestQueue(MatchActivity.this);
                 SimpleMultiPartRequest smpr = new SimpleMultiPartRequest(Request.Method.POST, matchCalendarURL, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -166,5 +171,4 @@ public class MatchingFragment extends Fragment {
 
         }
     }
-
 }

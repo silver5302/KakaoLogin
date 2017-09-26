@@ -50,8 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private SessionCallback callback;
     TextView user_nickname,user_email;
     CircleImageView user_img;
-    RelativeLayout success_layout;
-    Fragment fragment;
+    LinearLayout success_layout;
     UserProfile profile;
 
     SQLiteDatabase db;
@@ -124,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // 로그인 성공 시 사용할 뷰
         View headerView=navi.getHeaderView(0);
-        success_layout = (RelativeLayout) findViewById(R.id.success_layout);
+        success_layout = (LinearLayout) findViewById(R.id.success_layout);
         user_nickname =(TextView)headerView.findViewById(R.id.tv_header_name);
         user_img =(CircleImageView) headerView.findViewById(R.id.img_header);
         user_email =(TextView)headerView.findViewById(R.id.tv_header_mail);
@@ -174,9 +173,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(id==R.id.header_menu_logout){
             if(Session.getCurrentSession().isOpened()) {
                 requestLogout();
-                FragmentTransaction fragmentTran=fragmentManager.beginTransaction();
-                if(fragment!=null) fragmentTran.remove(fragment);
-                fragmentTran.commit();
+
             }
         }else if(id==R.id.header_menu_regiList){
 
@@ -186,17 +183,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent=new Intent(this,MatchPermissonActivity.class);
             startActivity(intent);
         }else if(id==R.id.header_menu_searchteam){
-            FragmentTransaction tran=fragmentManager.beginTransaction();
-            fragment=new SearchTeamFragment();
-            tran.add(R.id.success_layout,fragment);
-            tran.addToBackStack(null);
-            tran.commit();
+            Intent intent=new Intent(this,SearchTeamActivity.class);
+            startActivity(intent);
         }else if (id==R.id.header_menu_matching){
-            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-            fragment=new MatchingFragment();
-            fragmentTransaction.add(R.id.success_layout,fragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            Intent intent=new Intent(this,MatchActivity.class);
+            startActivity(intent);
 
         }
 
@@ -349,29 +340,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(this, "이미 한 팀의 주장입니다.", Toast.LENGTH_SHORT).show();
             return;
         }
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragment=new MakeTeamFragment();
-        fragmentTransaction.replace(R.id.success_layout,fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+
+        Intent intent=new Intent(this,MakeTeamActivity.class);
+        startActivity(intent);
+
 
     }
     public void clickFindTeam(View v){
 
-        FragmentTransaction tran=fragmentManager.beginTransaction();
-        fragment=new SearchTeamFragment();
-        tran.replace(R.id.success_layout,fragment);
-        tran.addToBackStack(null);
-        tran.commit();
+        Intent intent=new Intent(this,SearchTeamActivity.class);
+        startActivity(intent);
 
 
     }
     public void clickMatchingTeam(View v){
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragment=new MatchingFragment();
-        fragmentTransaction.replace(R.id.success_layout,fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+
+        Intent intent=new Intent(this,MatchActivity.class);
+        startActivity(intent);
 
 
 
