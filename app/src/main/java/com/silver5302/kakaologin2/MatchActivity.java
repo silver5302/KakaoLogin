@@ -113,12 +113,9 @@ public class MatchActivity extends AppCompatActivity {
                     for (int j = 0; j < 12; j++) {
                         for (int i = 0; i < 31; i++) {
                             calendarView.unMarkDate(2017+k, j, i);
-
                         }
                     }
-
                 }
-
 
                 ////////////////////////
 
@@ -136,11 +133,7 @@ public class MatchActivity extends AppCompatActivity {
                         R.drawable.kyungnam,R.drawable.jeju};
 
                 btnRegion.setBackgroundResource(imgs[n]);
-
-
-
                 ///////////////////////
-
 
                 RequestQueue requestQueue = Volley.newRequestQueue(MatchActivity.this);
                 SimpleMultiPartRequest smpr = new SimpleMultiPartRequest(Request.Method.POST, matchCalendarURL, new Response.Listener<String>() {
