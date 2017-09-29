@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     SQLiteDatabase db;
     Cursor cursor2;
 
-    FragmentManager fragmentManager;
+
     LoginButton loginButton;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Session.getCurrentSession().addCallback(callback);
 
 
-        fragmentManager=getSupportFragmentManager();
+
         navi=(NavigationView)findViewById(R.id.navi);
         drawerLayout=(DrawerLayout)findViewById(R.id.layout_drawer);
         toolbar=(Toolbar)findViewById(R.id.toolbar);
