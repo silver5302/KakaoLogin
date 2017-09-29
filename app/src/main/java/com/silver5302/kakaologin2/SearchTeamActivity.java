@@ -27,7 +27,7 @@ public class SearchTeamActivity extends AppCompatActivity {
     RecyclerView recycler;
     ArrayList<TeamList> teamLists=new ArrayList<>();
     ArrayList<TeamList> originalTeamLists = new ArrayList<>();
-    RecyclerAdapter adapter;
+    SearchTeamRecyclerAdapter adapter;
     LoadThread loadThread;
 
     @Override
@@ -81,7 +81,7 @@ public class SearchTeamActivity extends AppCompatActivity {
 
         recycler=(RecyclerView)findViewById(R.id.recycler);
 
-        adapter=new RecyclerAdapter(teamLists,this);
+        adapter=new SearchTeamRecyclerAdapter(teamLists,this);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new GridLayoutManager(this,2));
 

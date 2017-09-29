@@ -18,12 +18,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by alfo06-19 on 2017-08-09.
  */
 
-public class RecyclerAdapter extends RecyclerView.Adapter {
+public class SearchTeamRecyclerAdapter extends RecyclerView.Adapter {
 
     ArrayList<TeamList> teamLists;
     Context context;
 
-    public RecyclerAdapter(ArrayList<TeamList> teamLists, Context context) {
+    public SearchTeamRecyclerAdapter(ArrayList<TeamList> teamLists, Context context) {
         this.teamLists = teamLists;
         this.context = context;
     }
